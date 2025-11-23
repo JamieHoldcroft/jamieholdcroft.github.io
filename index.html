@@ -604,6 +604,13 @@
             <div style="font-size: 0.85rem; color: #9ca3af; margin-top: 6px;">
                 Animation: Mixing Operator Geometry
             </div>
+            <div style="text-align:center; margin: 32px 0;">
+             <img src="JPG_1.jpg"
+                alt="Probability vs objective function values"
+            style="max-width: 600px; width: 100%; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08);">
+            <div style="font-size: 0.85rem; color: #9ca3af; margin-top: 6px;">
+              Figure: Relationship between \( C(z) \) and the probability of measuring \( z \) after QAOA
+            </div>
             </div>
 
           <h2>Greater Depths</h2>
@@ -711,9 +718,17 @@
             for why they hold can be gained by plotting the expectation as a function of
             \( (\gamma, \beta) \) at small depth and observing its smooth structure.
           </p>
+          <div style="text-align:center; margin: 28px 0;">
+            <img src="JPG_2.jpg"
+              alt="Expected Value Manifold"
+            style="max-width: 600px; width: 100%; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08);">
+            <div style="font-size: 0.85rem; color: #9ca3af; margin-top: 6px;">
+              Figure: Expectation landscape as a function of \( \gamma \) and \( \beta \)
+            </div>
+          </div>         
           <p>
-            Gradient-based optimisation uses the differentiable structure to find
-            parameters. One begins with a random pair of parameters, then repeatedly runs
+            Gradient-based optimisation uses the fact that our space is a differentiable manifold 
+            to find parameters. One begins with a random pair of parameters, then repeatedly runs
             QAOA with those parameters and computes \( C(z) \) on the outputs until an
             accurate approximation of the expectation is obtained. Then the same procedure
             is performed for nearby choices of parameters to approximate the partial
