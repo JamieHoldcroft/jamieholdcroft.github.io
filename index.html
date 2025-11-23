@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Why does the QAOA work?</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- MathJax for LaTeX rendering -->
+  <script
+    id="MathJax-script"
+    async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+  ></script>
+
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg-elevated: #020617;
+      --fg: #e5e7eb;
+      --fg-muted: #9ca3af;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.12);
+      --border-subtle: rgba(148, 163, 184, 0.32);
+      --radius-lg: 1.5rem;
+      --radius-pill: 999px;
+      --shadow-soft: 0 24px 60px rgba(15, 23, 42, 0.75);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: radial-gradient(circle at top, #1d283a 0, #020617 55%, #000 100%);
+      color: var(--fg);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 32px 16px 72px;
+    }
+
+    @media (min-width: 768px) {
+      .page {
+        padding: 48px 0 96px;
+      }
+    }
+
+    .shell {
+      background: linear-gradient(
+          135deg,
+          rgba(56, 189, 248, 0.04),
+          rgba(129, 140, 248, 0.04)
+        ),
+        radial-gradient(circle at top left, rgba(56, 189, 248, 0.16), transparent 60%),
+        radial-gradient(circle at top right, rgba(244, 114, 182, 0.12), transparent 55%);
+      border-radius: 32px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      box-shadow: var(--shadow-soft);
+      padding: 24px 18px 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    @media (min-width: 768px) {
+      .shell {
+        padding: 32px 32px 40px;
+      }
+    }
+
+    .shell::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        circle at 10% -10%,
+        rgba(56, 189, 248, 0.15),
+        transparent 55%
+      );
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .shell-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .article-header {
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 18px;
+      margin-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border: 1px solid rgba(56, 189, 248, 0.5);
+    }
+
+    .pill-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.35);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(1.9rem, 2.4vw + 1.5rem, 2.6rem);
+      letter-spacing: -0.04em;
+    }
+
+    .meta {
+      font-size: 0.9rem;
+      color: var(--fg-muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .meta-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 999px;
+      background: var(--border-subtle);
+    }
+
+    .article-body {
+      font-size: 1rem;
+      color: var(--fg);
+    }
+
+    .article-body h2 {
+      margin-top: 32px;
+      margin-bottom: 8px;
+      font-size: 1.25rem;
+      letter-spacing: -0.01em;
+      position: relative;
+    }
+
+    .article-body h2::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 40px;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+    }
+
+    .article-body h3 {
+      margin-top: 24px;
+      margin-bottom: 6px;
+      font-size: 1.06rem;
+      letter-spacing: -0.01em;
+      color: #cbd5f5;
+    }
+
+    .article-body p {
+      margin: 12px 0;
+      color: var(--fg);
+    }
+
+    .article-body p.lead {
+      font-size: 1.02rem;
+      color: #e5e7eb;
+    }
+
+    .article-body em {
+      color: #eab8ff;
+    }
+
+    .article-body strong {
+      color: #f9fafb;
+    }
+
+    .article-body ul,
+    .article-body ol {
+      padding-left: 1.3rem;
+      margin: 10px 0 16px;
+    }
+
+    .article-body li {
+      margin: 4px 0;
+    }
+
+    .equation-centered {
+      text-align: center;
+      margin: 16px 0;
+    }
+
+    table {
+      border-collapse: collapse;
+      margin: 12px 0;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+      background: rgba(15, 23, 42, 0.7);
+    }
+
+    th,
+    td {
+      padding: 6px 10px;
+      border-bottom: 1px solid rgba(51, 65, 85, 0.7);
+      font-size: 0.9rem;
+    }
+
+    th {
+      background: rgba(15, 23, 42, 0.9);
+      text-align: left;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        "Liberation Mono", "Courier New", monospace;
+      font-size: 0.92em;
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: 999px;
+      padding: 2px 8px;
+      border: 1px solid rgba(51, 65, 85, 0.9);
+    }
+
+    .footer-note {
+      margin-top: 28px;
+      padding-top: 14px;
+      border-top: 1px dashed rgba(148, 163, 184, 0.5);
+      font-size: 0.9rem;
+      color: var(--fg-muted);
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="shell">
+      <div class="shell-inner">
+        <header class="article-header">
+          <div class="pill">
+            <span class="pill-dot"></span>
+            Quantum Approximate Optimization Algorithm
+          </div>
+          <h1>Why does the QAOA work?</h1>
+          <div class="meta">
+            <span>By <em>Anonymous</em></span>
+            <span class="meta-dot"></span>
+            <span>Math + Quantum Computing</span>
+          </div>
+        </header>
+
+        <article class="article-body">
+          <h2>Introduction</h2>
+          <p class="lead">
+            The Quantum Approximate Optimisation Algorithm (QAOA) is a promising
+            approach to solving combinatorial optimisation problems. It is a reasonably
+            flexible algorithm that combines the strengths of classical and quantum
+            computers to solve problems which may be intractable without this union.
+          </p>
+          <p>
+            However, the algorithm is remarkably minimalist, and the fact that it works
+            can at first seem uncanny. The purpose of this article is to give an intuitive
+            explanation of <strong>why</strong> this algorithm works, based only on basic
+            linear algebra and a bare-bones knowledge of quantum computation.
+          </p>
+
+          <h2>The Problem</h2>
+          <p>
+            The QAOA is designed to solve approximate optimisation problems. We begin with
+            \( n \) bits and \( m \) clauses, where every clause is a constraint on a subset
+            of the bits. We then define the objective function \( C(z) \) on a bit-string
+            \( z \) as the number of clauses \( z \) satisfies.
+          </p>
+          <p>
+            While combinatorial optimisation asks for a \( z \) which maximises the objective
+            function, approximate optimisation asks for a \( z \) where \( C(z) \) is close
+            to its maximum in the sense of being within some pre-specified ratio. Since
+            quantum computers are non-deterministic, we adjust this definition slightly and
+            say that we have solved approximate optimisation if the expected value
+            \( \mathbb{E}[C(z)] \) is within the required ratio.
+          </p>
+
+          <h2>The Algorithm</h2>
+          <p>
+            The QAOA runs by operating on a complex-valued state vector
+            \( \lvert s \rangle \) of size \( 2^n \), where each entry represents a bit
+            string (the bit string is the binary representation of its position). For
+            convenience, we will often refer to bit-strings by their position, such as
+            writing \( C(j) \) rather than “\( C(z) \) where \( z \) is the binary string
+            corresponding to position \( j \)”.
+          </p>
+          <p>
+            The algorithm uses two unitary operators. The first is the
+            <em>phase operator</em>, which depends on a parameter \( \gamma \) and is
+            defined as
+          </p>
+          <p class="equation-centered">
+            \[
+            U(C,\gamma) = e^{-i\gamma C}.
+            \]
+          </p>
+          <p>
+            Here we have interpreted \( C \) as a diagonal matrix with
+            \( C_{j,j} = C(j) \).
+          </p>
+          <p>
+            Before defining the second operator we introduce another matrix. The single-bit
+            operator on bit \( j \), written \( \sigma_j^x \), is a matrix which, when
+            applied to a vector, switches entries which differ only in their \( j \)-th bit.
+            For example, if
+            \[
+              \lvert s \rangle = [a, b, c, d]^T
+            \]
+            (with bit strings corresponding to
+            \([00, 01, 10, 11]^T\)) then
+            \[
+              \sigma_1^x \lvert s \rangle = [c, d, a, b]^T
+            \]
+            (we switched 00 with 10 and 01 with 11).
+          </p>
+          <p>
+            We then define the matrix
+          </p>
+          <p class="equation-centered">
+            \[
+            B = \sum_{j=1}^n \sigma_j^x.
+            \]
+          </p>
+          <p>
+            The <em>mixing operator</em> with parameter \( \beta \) is then defined as
+          </p>
+          <p class="equation-centered">
+            \[
+            U(B,\beta) = e^{-i\beta B}.
+            \]
+          </p>
+          <p>
+            To run the algorithm we begin with the state vector in the uniform superposition
+          </p>
+          <p class="equation-centered">
+            \[
+            \lvert s \rangle = \frac{1}{\sqrt{2^n}} \sum_z \lvert z \rangle.
+            \]
+          </p>
+          <p>
+            Then, choosing a depth \( p \ge 1 \) and \( 2p \) angles
+            \( \gamma_1, \ldots, \gamma_p \equiv \gamma \) and
+            \( \beta_1, \ldots, \beta_p \equiv \beta \), we apply our operators \( p \) times
+            to get
+          </p>
+          <p class="equation-centered">
+            \[
+            \lvert \gamma, \beta \rangle
+            = U(B, \beta_p) \, U(C, \gamma_p) \cdots
+              U(B, \beta_1) \, U(C, \gamma_1) \lvert s \rangle.
+            \]
+          </p>
+          <p>
+            With sensible choices of \( \beta \) and \( \gamma \), this process will solve
+            the approximate optimisation problem.
+          </p>
+          <p>
+            One important catch here is the phrase “with sensible choices of \( \beta \) and
+            \( \gamma \)”. Making these choices is far from trivial. In fact, finding good
+            values of \( \beta \) and \( \gamma \) is where classical computers come into
+            play. We will not go into too much detail about how this is done here, but
+            hopefully by the end of the article you will have a feel for why we should
+            expect this to be an achievable task.
+          </p>
+
+          <h2>Why Does This Work?</h2>
+          <p>
+            To understand this algorithm we need to build a strong algebraic and geometric
+            intuition for what the two operators are doing.
+          </p>
+
+          <h3>The Phase Operator</h3>
+          <p>
+            The phase operator is by far the easier of the two to understand. Keep in mind
+            this is the operator which must encode the objective function into our state
+            vector (the mixing operator does not interact with \( C(z) \)). Recall the
+            definition
+          </p>
+          <p class="equation-centered">
+            \[
+            U(C,\gamma) = e^{-i\gamma C}.
+            \]
+          </p>
+          <p>
+            Since \( C \) is a diagonal matrix, \( -i\gamma C \) is also a diagonal matrix,
+            this time with entries \( C_{j,j} = -i\gamma C(j) \). But the exponential of a
+            diagonal matrix is just another diagonal matrix with each term exponentiated;
+            its entries are
+            \[
+            U(C,\gamma)_{j,j} = e^{-i\gamma C(j)}.
+            \]
+            When we apply this to our state vector \( U(C,\gamma)\lvert s\rangle \), we
+            multiply the \( j \)-th term in the state vector by \( e^{-i\gamma C(j)} \).
+            This changes the phase but not the probability amplitude of each term.
+          </p>
+          <p>
+            Let us take a geometric look at what this is doing. First, we choose a relatively
+            simple objective function and a value of \( \gamma \). We use 3 bits,
+            \( \gamma = \pi/10 \) and a random permutation of the numbers 1–8 for the
+            objective function:
+          </p>
+
+          <div style="overflow-x:auto;">
+            <table>
+              <thead>
+                <tr>
+                  <th>\(z\)</th>
+                  <th>000</th>
+                  <th>001</th>
+                  <th>010</th>
+                  <th>011</th>
+                  <th>100</th>
+                  <th>101</th>
+                  <th>110</th>
+                  <th>111</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>\(C(z)\)</th>
+                  <td>3</td>
+                  <td>5</td>
+                  <td>2</td>
+                  <td>7</td>
+                  <td>1</td>
+                  <td>8</td>
+                  <td>4</td>
+                  <td>6</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p>
+            Conceptually, we can visualise the effect of the phase operator by plotting each
+            entry of the state vector on the complex plane and watching how the entries move
+            as we vary \( \gamma \).
+          </p>
+          <p>
+            The most important observation is that the \( z \) with the minimum value of
+            \( C(z) \) rotates the least, while the maximum value rotates the most. It is
+            this fact that will allow our algorithm to find the maximum (or, for that matter,
+            minimum) value of \( C(z) \).
+          </p>
+
+          <h3>The Mixing Operator</h3>
+          <p>
+            The mixing operator, while more complex, yields to a similar algebraic and
+            geometric understanding. Recall the definition
+          </p>
+          <p class="equation-centered">
+            \[
+            U(B,\beta) = e^{-i\beta B},
+            \quad\text{where } B = \sum_{j=1}^n \sigma_j^x.
+            \]
+          </p>
+          <p>
+            This operator is easiest to understand through its Taylor series:
+          </p>
+          <p class="equation-centered">
+            \[
+            e^{-i\beta B} =
+            \sum_{k=0}^{\infty} \frac{(-i\beta)^k}{k!}
+            \left( \sum_{j=1}^n \sigma_{j}^x \right)^{k}
+            =
+            I - i\beta\sum_{j=1}^n \sigma_{j}^x
+            - \frac{\beta^2}{2!}
+              \left(\sum_{j=1}^n \sigma_{j}^x\right)^2
+            + \frac{i\beta^3}{3!}
+              \left(\sum_{j=1}^n \sigma_{j}^x\right)^3
+            + \cdots
+            \]
+          </p>
+          <p>
+            Notice that the \( k! \) in the denominator must dominate the large terms; this
+            can be inferred algebraically or from the fact that the sum converges. We can
+            control how many terms are relevant with our choice of \( \beta \). If
+            \( \beta &lt; 1 \), powers of \( \beta \) are exponentially decreasing, so the
+            first few terms will describe the full exponential with high precision.
+          </p>
+          <p>
+            If we call the \( i \)-th entry in the vector \( a_i \), let us see how some
+            entry \( j \) changes as we apply the mixing operator. If we use the Taylor
+            series we will get an infinite sum of complex numbers, but as we just observed
+            the first few terms already give us an accurate picture. From the \( I \) term,
+            our first complex number in the sum is \( a_j \).
+          </p>
+          <p>
+            Now we need to interpret the
+            \( \left(\sum_{j=1}^n \sigma_{j}^x\right)^k \) terms. At \( k=1 \), this will
+            contribute \( \sum a_i \) where \( i \) is one bit-flip away from \( j \). At
+            \( k=2 \), when we square the matrix, we will be adding up entries that are
+            two bit-flips away from each other (if an entry can be reached with two
+            bit-flips in multiple ways we must count <strong>all</strong> such paths in
+            the sum). Similarly, for an arbitrary \( k \),
+            \( B^k = \left(\sum_{j=1}^n \sigma_{j}^x\right)^k \) contributes to the sum all
+            entries which are \( k \) bit-flips away (including duplicates).
+          </p>
+          <p>
+            One elegant way to see why \( B^k \) does this is to view \( B \) as a graph
+            adjacency matrix and recall that \( B^k_{i,j} \) describes the number of paths
+            from \( i \) to \( j \) of length \( k \).
+          </p>
+          <p>
+            Altogether,
+            \[
+              \frac{(-i\beta)^k}{k!}
+              \left(\sum_{j=1}^n \sigma_{j}^x\right)^{k}
+            \]
+            will contribute to \( a_j \) the sum of all entries which are \( k \) bit-flips
+            away from \( a_j \), scaled by a factor of \( \frac{\beta^k}{k!} \) and rotated
+            clockwise by \( \frac{\pi}{2} \times (k \bmod 4) \) radians.
+          </p>
+          <p>
+            Let us look at the sum just after the first two terms, which, if \( \beta \) is
+            close to 0, approximates the value of the total sum. After just these terms,
+            the \( j \)-th position in the state vector will be
+            \[
+              a_j - i\beta \sum a_i,
+            \]
+            where the sum is over all \( i \) one bit-flip away from \( j \).
+          </p>
+          <p>
+            Even without knowing anything about the structure of \( C \), we would expect
+            that the \( \sum a_i \) term would point roughly in the same direction as
+            \( \sum_{i=1}^{2^n} a_i \) (as that is what we expect of any “random” sum of
+            entries). But geometrically (so long as \( \gamma \) is small) we have to
+            rotate clockwise from the \( z \) which minimises \( C(z) \) to reach this
+            “average direction”, and rotate clockwise further to reach the \( z \) which
+            maximises \( C(z) \). So when we multiply this term by \( -i \) and in doing so
+            rotate counter-clockwise, we expect to move further from the minimum and closer
+            to the maximum.
+          </p>
+          <p>
+            Thus we expect constructive interference near the maximum value and destructive
+            interference near the minimum.
+          </p>
+          <p>
+            Numerical experiments (and visualisations of the state on the complex plane)
+            confirm this intuition: after one round of phase and mixing operators,
+            probability mass is biased towards larger values of \( C(z) \), yielding
+            approximation ratios \( r \) noticeably larger than \( 1/2 \) even with
+            heuristically chosen parameters.
+          </p>
+
+          <h2>Greater Depths</h2>
+          <p>
+            Our intuition is very strong for low-depth runs of QAOA, but it admittedly
+            becomes more difficult to apply for runs with many iterations. A natural
+            question is: why does the mixing operator not eventually scramble the phases
+            so much that we can no longer gain information from them?
+          </p>
+          <p>
+            An exact answer is subtle—QAOA is famously tricky even for researchers. But we
+            can still provide some heuristics.
+          </p>
+          <p>
+            First, for larger depths we typically choose smaller values of \( \beta \); this
+            reduces the per-layer effect of the mixing operator on the phases. But what is
+            the difference between multiple small values of \( \beta \) and one large one?
+          </p>
+          <p>
+            Here is one heuristic: after running the mixing operator, the size and direction
+            of an entry affects the size and direction of its neighbouring (bit-flip) entries.
+            This means that when we next run the mixing operator, each entry is interacting
+            with a “previous version” of itself through its neighbours. The larger an entry
+            was in previous states, the more it interacts with itself through subsequent
+            mixing operators. In addition, we can use our choices of \( \gamma \) to ensure
+            that this interference is constructive.
+          </p>
+          <p>
+            Thus, spreading our mixing over multiple iterations allows us to “anchor” entries
+            to past versions of themselves, which prevents their phases from completely
+            randomising.
+          </p>
+          <p>
+            This explanation, while plausible, is missing a crucial piece of the puzzle:
+            the adiabatic theorem.
+          </p>
+          <p>
+            Very roughly, the adiabatic theorem says that if we start with a quantum system
+            described by a simple Hamiltonian whose ground state we know, and we slowly
+            deform that Hamiltonian into a more complicated target Hamiltonian, then the
+            state will remain in the ground state throughout this evolution (assuming we go
+            slowly enough and other technical conditions hold). Thus at the end, we end up
+            in the ground state we wanted to learn.
+          </p>
+          <p>
+            QAOA can be seen as a discrete approximation of this process. The current
+            Hamiltonian is described by the matrix \( B \) with the ground state being the
+            uniform superposition, while the target is the matrix \( C \) from the phase
+            operator. The ground state of \( C \) is then the state vector entirely
+            concentrated on the entry with the minimum value of the objective function
+            (for maximisation, one can consider \( -C \) instead).
+          </p>
+          <p>
+            With correct parameters and large depth, QAOA approximates this adiabatic
+            process, and in the limit of depth going to infinity the approximation becomes
+            exact. This leads to the theorem that, for optimal choices of \( \gamma \) and
+            \( \beta \),
+          </p>
+          <p class="equation-centered">
+            \[
+            \lim_{p \rightarrow \infty} \mathbb{E}[C(z)] = \max_z C(z),
+            \]
+          </p>
+          <p>
+            where \( p \) is the depth.
+          </p>
+
+          <h2>Optimising Parameters</h2>
+          <p>
+            The performance of QAOA depends entirely on the parameters chosen. Different
+            choices of parameters can produce minimisation, maximisation, or simply noise.
+            Yet it may still seem mysterious how we choose appropriate parameters.
+          </p>
+          <p>
+            There are three main approaches:
+          </p>
+          <ul>
+            <li>gradient-based optimisation,</li>
+            <li>gradient-free optimisation, and</li>
+            <li>analytic methods.</li>
+          </ul>
+
+          <h3>Gradient-Based Optimisation</h3>
+          <p>
+            Before we can describe gradient-based optimisation we need to understand in
+            greater detail the relationship between the parameters and the expectation of
+            the objective function (for convenience we simply call this “the expectation”).
+          </p>
+          <p>
+            Our geometric intuition relied on a rough picture of where we expect the
+            different entries of the state vector to lie. The fact that we could be
+            somewhat hand-wavy, without caring about the precise values of our parameters,
+            suggests that slight changes in either parameter only induce slight changes in
+            the expectation. In other words, the partial derivatives of the expectation
+            with respect to the parameters are relatively small.
+          </p>
+          <p>
+            Even more importantly, slowly moving the parameters “in a fixed direction”
+            typically causes the expectation to move mostly in a single direction too.
+            That is, the second derivatives of the expectation are small, which limits the
+            number of local minima and maxima.
+          </p>
+          <p>
+            A rigorous proof of these facts is beyond the scope of this article, but a feel
+            for why they hold can be gained by plotting the expectation as a function of
+            \( (\gamma, \beta) \) at small depth and observing its smooth structure.
+          </p>
+          <p>
+            Gradient-based optimisation uses the differentiable structure to find
+            parameters. One begins with a random pair of parameters, then repeatedly runs
+            QAOA with those parameters and computes \( C(z) \) on the outputs until an
+            accurate approximation of the expectation is obtained. Then the same procedure
+            is performed for nearby choices of parameters to approximate the partial
+            derivatives.
+          </p>
+          <p>
+            Once we know the derivatives, we can determine the direction in parameter space
+            with the steepest increase in expectation and move in that direction. Repeating
+            this process finds local maxima (or minima). Combined with strategies for
+            escaping local extrema, we can approach globally optimal parameters.
+          </p>
+
+          <h3>Gradient-Free Optimisation</h3>
+          <p>
+            A major challenge with gradient-based optimisation for QAOA is that we cannot
+            evaluate \( \mathbb{E}[C(z)] \) directly at a given parameter setting. Instead,
+            we must run QAOA many times to estimate the expectation. This makes derivative
+            estimation expensive, and if our expectation estimates at nearby parameter
+            points are noisy, our gradient estimates become unreliable.
+          </p>
+          <p>
+            Gradient-free optimisation refers to any optimisation method that does not
+            require derivative information. There is a large variety of such approaches,
+            including:
+          </p>
+          <ul>
+            <li>genetic algorithms,</li>
+            <li>simplex methods,</li>
+            <li>first-improvement hill climbing,</li>
+            <li>Bayesian model-based methods, and more.</li>
+          </ul>
+          <p>
+            Their unifying theme is that they treat QAOA as a black-box function from
+            parameters to an expectation value, and search for local extrema without
+            explicitly assuming a simple differentiable structure (though many still
+            benefit from smoothness in practice).
+          </p>
+
+          <h3>Analytic Methods</h3>
+          <p>
+            The first two approaches attempt to optimise parameters without using detailed
+            information about the structure of the objective function. Analytic methods, by
+            contrast, exploit mathematical analysis of the specific problem to guide the
+            choice of parameters (sometimes in combination with general-purpose optimisers).
+          </p>
+          <p>
+            In practice, how this is done is highly problem-specific. Nonetheless, the key
+            idea is to leverage structure in \( C \) to predict good regions in parameter
+            space, making the search more efficient and interpretable.
+          </p>
+
+          <h2>Conclusion</h2>
+          <p>
+            We now have the essential pieces: a description of how QAOA works, a geometric
+            intuition for why it works and why it remains meaningful at greater depths, and
+            a discussion of how to choose parameters to make the algorithm perform well.
+          </p>
+          <p>
+            All that is missing is a sufficiently powerful quantum computer.
+          </p>
+
+          <div class="footer-note">
+            This article is an intuitive, non-rigorous discussion intended for readers
+            comfortable with linear algebra and basic quantum computation. For deeper,
+            formal treatments, see the original QAOA papers and follow-up work in the
+            quantum optimisation literature.
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
