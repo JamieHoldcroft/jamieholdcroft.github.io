@@ -217,12 +217,18 @@ p { color: var(--text-muted); margin: 0 0 1em; }
 }
 
 .hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  letter-spacing: -0.02em;
+  max-width: 18ch;
+}
+
+/* Explicit "arty" heading treatment -- opt-in only (Writing, Photography),
+   not the site-wide default. Higher specificity than .hero h1 by design. */
+h1.literary-heading {
   font-family: var(--font-serif);
   font-style: italic;
   font-weight: 600;
-  font-size: clamp(2.2rem, 5vw, 3.2rem);
-  letter-spacing: -0.01em;
-  max-width: 18ch;
 }
 
 .gradient-text {
@@ -254,9 +260,7 @@ p { color: var(--text-muted); margin: 0 0 1em; }
 .section-head { margin-bottom: 36px; }
 .section-head .eyebrow { margin-bottom: 10px; }
 .section-head h2 {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 600;
+  font-family: var(--font-display);
   font-size: clamp(1.6rem, 3vw, 2.1rem);
 }
 .section-head p { max-width: 60ch; }
@@ -316,6 +320,9 @@ p { color: var(--text-muted); margin: 0 0 1em; }
 .cv-entry:last-child { border-bottom: none; }
 .cv-entry-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
 .cv-entry-head h3 { margin-bottom: 2px; }
+.cv-entry ul { margin: 10px 0 0; padding-left: 20px; color: var(--text-muted); }
+.cv-entry ul li { margin-bottom: 5px; }
+.cv-entry p + p { margin-top: 8px; }
 .cv-date { font-size: 0.85rem; color: var(--text-muted); white-space: nowrap; }
 .cv-org { color: var(--accent); font-weight: 500; font-size: 0.92rem; }
 
@@ -327,12 +334,6 @@ p { color: var(--text-muted); margin: 0 0 1em; }
 .writing-column {
   max-width: 68ch;
   margin: 0 auto;
-}
-
-.literary-heading {
-  font-family: var(--font-serif);
-  font-weight: 600;
-  font-style: italic;
 }
 
 .writing-toggle {
