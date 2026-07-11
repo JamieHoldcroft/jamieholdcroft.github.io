@@ -1,17 +1,17 @@
 ---
 layout: default
 title: "Writing — Jamie Holdcroft"
-description: "Essays and poetry by Jamie Holdcroft."
+description: "General writing and poetry by Jamie Holdcroft."
 ---
 <section class="hero" style="padding-bottom: 24px;">
   <div class="container">
     <span class="eyebrow">Writing</span>
-    <h1>Essays &amp; Poetry</h1>
+    <h1>General Writing &amp; Poetry</h1>
     <p class="hero-lede">
-      A collection of essays, and a small, curated selection of poetry.
+      A collection of general writing, and a small, curated selection of poetry.
     </p>
     <div class="writing-toggle">
-      <button class="active" data-target="essays-group">Essays</button>
+      <button class="active" data-target="essays-group">General Writing</button>
       <button data-target="poetry-group">Poetry</button>
     </div>
   </div>
@@ -24,12 +24,12 @@ description: "Essays and poetry by Jamie Holdcroft."
         {% assign essays = site.essays | sort: "date" | reverse %}
         {% for essay in essays %}
         <div class="card">
-          <span class="card-meta">Essay{% if essay.date %} · {{ essay.date | date: "%B %Y" }}{% endif %}</span>
+          <span class="card-meta">General Writing{% if essay.date %} · {{ essay.date | date: "%B %Y" }}{% endif %}</span>
           <h3><a href="{{ essay.url | relative_url }}">{{ essay.title }}</a></h3>
           <p>{{ essay.excerpt | escape }}</p>
         </div>
         {% else %}
-        <p>No essays yet.</p>
+        <p>No writing yet.</p>
         {% endfor %}
       </div>
     </div>

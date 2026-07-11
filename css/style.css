@@ -343,11 +343,16 @@ article.prose .poem-body { white-space: pre-wrap; font-style: italic; }
   margin-bottom: 14px;
   border-radius: var(--radius-sm);
   overflow: hidden;
-  border: 1px solid var(--border);
   cursor: pointer;
-  background: linear-gradient(160deg, var(--bg-elevated), var(--bg-alt));
+  /* Photos sit on a fixed white mat regardless of site theme — a
+     deliberate print-on-white gallery look, not theme-dependent. */
+  background: #ffffff;
+  padding: 10px;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
-.gallery-item img { width: 100%; height: auto; display: block; transition: transform 0.3s ease; }
+.gallery-item:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
+.gallery-item img { width: 100%; height: auto; display: block; border-radius: 4px; transition: transform 0.3s ease; }
 .gallery-item:hover img { transform: scale(1.05); }
 
 .lightbox {
