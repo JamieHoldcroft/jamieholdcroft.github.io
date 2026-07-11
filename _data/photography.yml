@@ -1,7 +1,19 @@
 photos:
   - image: /assets/images/photography/DSC_0383.JPG
-    caption: "Train in Venice"
+    caption: "Sunset Train to Venice"
     orientation: landscape   
   - image: /assets/images/photography/DSC_0492.JPG
-    caption: "Pile of Books"
+    caption: "Decay of Knowledge"
     orientation: portrait
+  - image: /assets/images/photography/DSC_0827.JPG
+    caption: "Forms I"
+    orientation: landscape
+  - image: /assets/images/photography/DSC_0037 (1).jpg
+    caption: "Nordkette Black and White I"
+    orientation: landscape
+  - image: /assets/images/photography/DSC_0710JPG.JPG
+    caption: "Um die Ecke"
+    orientation: portrait
+  - image: /assets/images/photography/DSC_0210JPG.jpg
+    caption: "Winter Evening in Oxford"
+    orientation: landscape
