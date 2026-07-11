@@ -1,10 +1,32 @@
 # Add news announcements here — newest can go anywhere, they're sorted by date.
 # Each entry: a date, some text, and an optional link (+ optional link_text).
-- date: 2026-07-11
-  text: "Launched this website."
-- date: 2026-06-01
-  text: "Our paper was accepted to the SIGIR 2026 Reproducibility Track."
+- date: 2026-07-20
+  text: "Our research has reached 50 citations on Google Scholar."
+
+- date: 2026-07-19
+  text: "Our paper was published in the SIGIR 2026 Reproducibility Track."
   link: "https://dl.acm.org/doi/10.1145/3805712.3808566"
   link_text: "Read the paper"
-- date: 2026-04-01
+
+- date: 2026-07-02
+  text: "Our paper was published in the ACL 2026 System Demonstrations Track."
+  link: "https://aclanthology.org/2026.acl-demo.21/"
+  link_text: "Read the paper"
+
+- date: 2026-04-06
   text: "Started a visiting exchange semester at the Technical University of Munich (TUM)."
+
+- date: 2026-01-05
+  text: "Started as an undergraduate research intern at the University of Innsbruck, researching retrieval systems, re-ranking, and retrieval-augmented generation."
+
+- date: 2025-09-30
+  text: "Represented UNSW at the UniSport Nationals Surfing Championships (Division 1) in the Gold Coast."
+
+- date: 2025-06-01
+  text: "Completed advanced postgraduate-level coursework in machine learning, computer vision and algorithm design at UNSW, achieving two High Distinctions and a Distinction."
+
+- date: 2025-02-03
+  text: "Started working as a casual academic at UNSW Computer Science & Engineering, tutoring C programming classes."
+
+- date: 2025-01-01 
+  text: "Start of documentation."
