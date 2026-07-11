@@ -323,21 +323,61 @@ h1.literary-heading {
 .nav-card {
   display: block;
   color: var(--text);
+  position: relative;
+  overflow: hidden;
 }
+.nav-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--accent-gradient);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.28s ease;
+}
+.nav-card:hover::before { transform: scaleX(1); }
 .nav-card:hover { text-decoration: none; }
+.nav-card h3 { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .nav-card .arrow { color: var(--text-muted); font-weight: 600; transition: color 0.2s ease, transform 0.2s ease; display: inline-block; }
-.nav-card:hover .arrow { color: var(--text); transform: translateX(3px); }
+.nav-card:hover .arrow { color: var(--accent); transform: translateX(4px); }
 
 /* ---------- CV ---------- */
-.cv-entry { margin-bottom: 28px; padding-bottom: 28px; border-bottom: 1px solid var(--border); }
+/* CV — date rail on the left, content on the right (modern academic look) */
+.cv-entry {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 36px;
+  padding: 26px 0;
+  border-bottom: 1px solid var(--border);
+}
 .cv-entry:last-child { border-bottom: none; }
-.cv-entry-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
-.cv-entry-head h3 { margin-bottom: 2px; }
-.cv-entry ul { margin: 10px 0 0; padding-left: 20px; color: var(--text-muted); }
-.cv-entry ul li { margin-bottom: 5px; }
-.cv-entry p + p { margin-top: 8px; }
-.cv-date { font-size: 0.85rem; color: var(--text-muted); white-space: nowrap; }
-.cv-org { color: var(--text-muted); font-weight: 500; font-size: 0.92rem; }
+.cv-date {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  padding-top: 0.35em;
+  line-height: 1.5;
+}
+.cv-content h3 { font-size: 1.1rem; margin-bottom: 3px; line-height: 1.35; }
+.cv-org {
+  display: block;
+  color: var(--accent);
+  font-weight: 500;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+.cv-content > p { margin: 0 0 6px; }
+.cv-content ul { margin: 8px 0 0; padding-left: 18px; color: var(--text-muted); }
+.cv-content ul li { margin-bottom: 6px; line-height: 1.55; }
+
+@media (max-width: 640px) {
+  .cv-entry { grid-template-columns: 1fr; gap: 8px; }
+  .cv-date { padding-top: 0; }
+}
+
+.skills-list { display: flex; flex-wrap: wrap; gap: 10px; }
 
 .skills-list { display: flex; flex-wrap: wrap; gap: 10px; }
 
