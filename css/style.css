@@ -210,7 +210,7 @@ p { color: var(--text-muted); margin: 0 0 1em; }
    not the site-wide default. Higher specificity than .hero h1 by design. */
 h1.literary-heading {
   font-family: var(--font-literary);
-  font-style: italic;
+  font-style: normal;
   font-weight: 500;
 }
 
@@ -399,7 +399,7 @@ h1.literary-heading {
 }
 .writing-hero h1 {
   font-family: var(--font-literary);
-  font-style: italic;
+  font-style: normal;
   font-weight: 500;
   font-size: clamp(2.6rem, 6vw, 4rem);
   line-height: 1;
@@ -508,7 +508,7 @@ article.prose {
 article.prose p { color: var(--text); }
 article.prose h1 {
   font-family: var(--font-literary);
-  font-style: italic;
+  font-style: normal;
   font-weight: 500;
   font-size: clamp(2.2rem, 5vw, 3.2rem);
   line-height: 1.05;
