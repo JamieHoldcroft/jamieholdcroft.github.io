@@ -238,6 +238,16 @@ h1.literary-heading {
   color: transparent;
 }
 
+.hero-tagline {
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 3.2vw, 2rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  margin: 14px 0 24px;
+  max-width: 22ch;
+}
+
 .hero-lede {
   font-size: 1.15rem;
   max-width: 56ch;
