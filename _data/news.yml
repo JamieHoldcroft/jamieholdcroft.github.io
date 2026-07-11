@@ -1,0 +1,10 @@
+# Add news announcements here — newest can go anywhere, they're sorted by date.
+# Each entry: a date, some text, and an optional link (+ optional link_text).
+- date: 2026-07-11
+  text: "Launched this website."
+- date: 2026-06-01
+  text: "Our paper was accepted to the SIGIR 2026 Reproducibility Track."
+  link: "https://dl.acm.org/doi/10.1145/3805712.3808566"
+  link_text: "Read the paper"
+- date: 2026-04-01
+  text: "Started a visiting exchange semester at the Technical University of Munich (TUM)."

@@ -27,6 +27,26 @@ description: "Jamie Holdcroft — undergraduate researcher studying Mathematics 
   </div>
 </section>
 
+{% if site.data.news and site.data.news.size > 0 %}
+<section class="section" style="padding-top: 0;">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">News</span>
+      <h2>Recent updates</h2>
+    </div>
+    <ul class="news-list">
+      {% assign news_items = site.data.news | sort: "date" | reverse %}
+      {% for item in news_items %}
+      <li class="news-item">
+        <span class="news-date">{{ item.date | date: "%b %Y" }}</span>
+        <span class="news-text">{{ item.text }}{% if item.link %} <a href="{{ item.link }}" target="_blank" rel="noopener">{{ item.link_text | default: "Read more" }} →</a>{% endif %}</span>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+{% endif %}
+
 <section class="section">
   <div class="container">
     <div class="section-head">
