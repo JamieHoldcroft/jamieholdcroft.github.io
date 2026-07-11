@@ -42,13 +42,17 @@ photos:
     caption: "Into Alcala la Real"
     orientation: landscape
   - image: /assets/images/photography/DSC_0393.jpg 
-    caption: "Ethereal"
+    caption: "Departure and Arrival"
     orientation: landscape
   - image: /assets/images/photography/DSC_0595.JPG
-    caption: "A peek"
+    caption: "Routine I"
     orientation: portrait
   - image: /assets/images/photography/DSC_0578.jpg
     caption: "Geometria della Grazia"
     orientation: portrait
+  - image: /assets/images/photography/DSC_0629.jpg
+    caption: "Walk in Love"
+    orientation: portrait
+
 
 
