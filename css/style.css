@@ -289,42 +289,97 @@ p { color: var(--text-muted); margin: 0 0 1em; }
 
 .skills-list { display: flex; flex-wrap: wrap; gap: 10px; }
 
-/* ---------- Writing ---------- */
-.writing-toggle { display: flex; gap: 10px; margin-bottom: 32px; }
-.writing-toggle button {
-  background: transparent;
-  border: 1px solid var(--border);
-  color: var(--text-muted);
-  padding: 8px 18px;
-  border-radius: 999px;
-  cursor: pointer;
-  font-family: var(--font-body);
-  font-size: 0.9rem;
-  font-weight: 500;
+/* ---------- Writing ----------
+   Literary-journal treatment: no cards, serif typography, a narrow
+   centered column, minimal underline tabs instead of filled pills. */
+.writing-column {
+  max-width: 68ch;
+  margin: 0 auto;
 }
-.writing-toggle button.active {
-  background: var(--bg-elevated);
-  color: var(--text);
-  border-color: var(--accent);
+
+.literary-heading {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-style: italic;
+}
+
+.writing-toggle {
+  display: flex;
+  gap: 32px;
+  border-bottom: 1px solid var(--border);
+}
+.writing-toggle button {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.05rem;
+  padding: 0 0 14px;
+  cursor: pointer;
+  position: relative;
+}
+.writing-toggle button.active { color: var(--text); }
+.writing-toggle button.active::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -1px;
+  height: 2px;
+  background: var(--accent-gradient);
 }
 
 .writing-group { display: none; }
 .writing-group.active { display: block; }
 
-.poem-excerpt {
+.writing-list-item {
+  display: block;
+  padding: 32px 0;
+  border-bottom: 1px solid var(--border);
+  color: inherit;
+}
+.writing-list-item:hover { text-decoration: none; }
+.writing-list-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 10px;
+}
+.writing-list-title {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--text);
+  transition: color 0.2s ease;
+}
+.writing-list-item:hover .writing-list-title { color: var(--accent); }
+.writing-list-date {
+  font-family: var(--font-body);
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+.writing-list-teaser {
   font-family: var(--font-serif);
   font-style: italic;
   color: var(--text-muted);
+  font-size: 1.02rem;
+  line-height: 1.7;
+  margin: 0;
   white-space: pre-wrap;
 }
 
 article.prose {
   font-family: var(--font-serif);
-  font-size: 1.08rem;
+  font-size: 1.1rem;
+  line-height: 1.8;
   max-width: 68ch;
+  margin: 0 auto;
 }
 article.prose p { color: var(--text); }
-article.prose h1 { font-family: var(--font-display); }
+article.prose h1 { font-family: var(--font-serif); font-weight: 600; font-size: 2.4rem; }
 article.prose .poem-body { white-space: pre-wrap; font-style: italic; }
 
 .back-link { display: inline-block; margin-bottom: 28px; font-size: 0.9rem; color: var(--text-muted); }

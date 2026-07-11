@@ -4,49 +4,50 @@ title: "Writing — Jamie Holdcroft"
 description: "General writing and poetry by Jamie Holdcroft."
 ---
 <section class="hero" style="padding-bottom: 24px;">
-  <div class="container">
+  <div class="container writing-column">
     <span class="eyebrow">Writing</span>
-    <h1>General Writing &amp; Poetry</h1>
+    <h1 class="literary-heading">General Writing &amp; Poetry</h1>
     <p class="hero-lede">
       A collection of general writing, and a small, curated selection of poetry.
     </p>
-    <div class="writing-toggle">
-      <button class="active" data-target="essays-group">General Writing</button>
-      <button data-target="poetry-group">Poetry</button>
-    </div>
   </div>
 </section>
 
 <section class="section" style="padding-top: 0;">
-  <div class="container">
+  <div class="container writing-column">
+    <div class="writing-toggle">
+      <button class="active" data-target="essays-group">General Writing</button>
+      <button data-target="poetry-group">Poetry</button>
+    </div>
+
     <div id="essays-group" class="writing-group active">
-      <div class="grid grid-2">
-        {% assign essays = site.essays | sort: "date" | reverse %}
-        {% for essay in essays %}
-        <div class="card">
-          <span class="card-meta">General Writing{% if essay.date %} · {{ essay.date | date: "%B %Y" }}{% endif %}</span>
-          <h3><a href="{{ essay.url | relative_url }}">{{ essay.title }}</a></h3>
-          <p>{{ essay.excerpt | escape }}</p>
+      {% assign essays = site.essays | sort: "date" | reverse %}
+      {% for essay in essays %}
+      <a class="writing-list-item" href="{{ essay.url | relative_url }}">
+        <div class="writing-list-row">
+          <h3 class="writing-list-title">{{ essay.title }}</h3>
+          {% if essay.date %}<span class="writing-list-date">{{ essay.date | date: "%B %Y" }}</span>{% endif %}
         </div>
-        {% else %}
-        <p>No writing yet.</p>
-        {% endfor %}
-      </div>
+        <p class="writing-list-teaser">{{ essay.excerpt | escape }}</p>
+      </a>
+      {% else %}
+      <p>No writing yet.</p>
+      {% endfor %}
     </div>
 
     <div id="poetry-group" class="writing-group">
-      <div class="grid grid-2">
-        {% assign poems = site.poems | sort: "date" | reverse %}
-        {% for poem in poems %}
-        <div class="card">
-          <span class="card-meta">Poetry{% if poem.date %} · {{ poem.date | date: "%B %Y" }}{% endif %}</span>
-          <h3><a href="{{ poem.url | relative_url }}">{{ poem.title }}</a></h3>
-          <p class="poem-excerpt">{{ poem.excerpt | escape | newline_to_br }}</p>
+      {% assign poems = site.poems | sort: "date" | reverse %}
+      {% for poem in poems %}
+      <a class="writing-list-item" href="{{ poem.url | relative_url }}">
+        <div class="writing-list-row">
+          <h3 class="writing-list-title">{{ poem.title }}</h3>
+          {% if poem.date %}<span class="writing-list-date">{{ poem.date | date: "%B %Y" }}</span>{% endif %}
         </div>
-        {% else %}
-        <p>No poems yet.</p>
-        {% endfor %}
-      </div>
+        <p class="writing-list-teaser">{{ poem.excerpt | escape | newline_to_br }}</p>
+      </a>
+      {% else %}
+      <p>No poems yet.</p>
+      {% endfor %}
     </div>
   </div>
 </section>
