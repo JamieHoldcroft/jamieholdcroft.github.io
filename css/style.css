@@ -393,6 +393,7 @@ article.prose .poem-body { white-space: pre-wrap; font-style: italic; }
   --text: #111827;
   --text-muted: #4b5563;
   --border: #e2e6ed;
+  margin: 0 clamp(16px, 4vw, 56px);
   padding: 48px 0 64px;
 }
 
