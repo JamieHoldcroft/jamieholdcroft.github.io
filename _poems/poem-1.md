@@ -1,12 +1,9 @@
 ---
-title: "[Poem Title]"
+title: "Untitled 1"
 date: 2026-07-11
 excerpt: |
-  A short excerpt or opening line can go here...
+  Untitled 1 description.
 poem_text: |
-  Replace this with your poem.
-  Line breaks are preserved automatically,
-  so just write it out the way you want it to read.
-
-  New stanzas just need a blank line between them.
+  I still need to write up my poetry into this site.
+  I will upload it upon arriving back in Australia.
 ---

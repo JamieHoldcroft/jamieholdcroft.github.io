@@ -1,8 +1,6 @@
 ---
-title: "[Essay Title Goes Here]"
+title: "Untitled 1"
 date: 2026-07-11
-excerpt: "A one or two sentence teaser of what the essay argues or explores."
+excerpt: "Untitled 1 description."
 ---
-This is a template essay entry, written through the CMS (or by editing this file directly). Replace this front matter and body with your actual essay content — the body below is standard Markdown.
-
-Keep paragraphs reasonably short for readability — this template uses a serif font for a slightly more "essay" feel than the rest of the site.
+First article will be posted soon. I still need to upload my articles from Medium.
