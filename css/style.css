@@ -15,9 +15,9 @@
   --text-muted: #6b645c;
   --border: #e8e3db;
 
-  --accent: #9d8158;      /* muted tan */
-  --accent-2: #74603a;    /* deep muted tan */
-  --accent-gradient: linear-gradient(135deg, #b39a6f 0%, #7e6942 100%);
+  --accent: #a18d6c;      /* muted tan / greige */
+  --accent-2: #7c6a4b;    /* deep muted tan */
+  --accent-gradient: linear-gradient(135deg, #b8a888 0%, #8c7a58 100%);
 
   --shadow: 0 10px 30px rgba(40, 30, 20, 0.08);
   --shadow-sm: 0 2px 10px rgba(40, 30, 20, 0.05);
@@ -177,8 +177,9 @@ p { color: var(--text-muted); margin: 0 0 1em; }
 
 .btn-primary {
   border: none;
-  background: var(--accent-gradient);
-  color: #241d12;
+  /* soft, light tan — not a dark/extreme gradient */
+  background: linear-gradient(135deg, #cfc2a4 0%, #b7a684 100%);
+  color: #3a3120;
   font-weight: 600;
 }
 .btn-primary:hover { box-shadow: 0 8px 24px color-mix(in srgb, var(--accent) 35%, transparent); }
@@ -187,6 +188,24 @@ p { color: var(--text-muted); margin: 0 0 1em; }
 .hero {
   padding: 96px 0 72px;
   position: relative;
+}
+
+/* Two-column hero: intro text + profile photo on the right */
+.hero-grid { display: grid; grid-template-columns: 1fr; gap: 40px; align-items: center; }
+.hero-photo { margin: 0; display: flex; justify-content: flex-start; }
+.hero-photo img {
+  width: 100%;
+  max-width: 340px;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: 26% 40%;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  display: block;
+}
+@media (min-width: 860px) {
+  .hero-grid { grid-template-columns: 1.5fr 0.9fr; gap: 60px; }
+  .hero-photo { justify-content: flex-end; }
 }
 
 .eyebrow {
