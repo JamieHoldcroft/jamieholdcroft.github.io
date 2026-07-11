@@ -3,7 +3,7 @@
    Theme: "ocean at night" — deep navy + teal + indigo
    ============================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500;1,9..144,600&display=swap');
 
 :root {
   /* Editorial light — clean white, warm ink, sienna accent.
@@ -28,6 +28,7 @@
   --font-display: 'Inter', system-ui, -apple-system, sans-serif;
   --font-body: 'Inter', system-ui, sans-serif;
   --font-serif: 'Source Serif 4', Georgia, serif;
+  --font-literary: 'Fraunces', 'Source Serif 4', Georgia, serif;
 }
 
 /* Photography — pure gallery white (photos read best on true white). */
@@ -208,9 +209,9 @@ p { color: var(--text-muted); margin: 0 0 1em; }
 /* Explicit "arty" heading treatment -- opt-in only (Writing, Photography),
    not the site-wide default. Higher specificity than .hero h1 by design. */
 h1.literary-heading {
-  font-family: var(--font-serif);
+  font-family: var(--font-literary);
   font-style: italic;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .gradient-text {
@@ -382,27 +383,57 @@ h1.literary-heading {
   .news-item { grid-template-columns: 1fr; gap: 4px; }
 }
 
-/* ---------- Writing ----------
-   Literary-journal treatment: no cards, serif typography, a narrow
-   centered column, minimal underline tabs instead of filled pills. */
-.writing-column {
-  max-width: 68ch;
-  margin: 0 auto;
+/* ---------- Writing — "The Masthead" ----------
+   A dark warm-ink hero band (the page's one moment of drama), then a
+   numbered editorial index on white. Fraunces literary type throughout. */
+.writing-column { max-width: 74ch; margin: 0 auto; }
+
+/* Full-bleed dark masthead */
+.writing-hero {
+  background: #1b1611;
+  color: #f5efe4;
+  padding: 108px 0 80px;
+}
+.writing-hero .eyebrow {
+  color: #d3925f;
+  display: block;
+  margin-bottom: 24px;
+}
+.writing-hero h1 {
+  font-family: var(--font-literary);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(2.8rem, 7vw, 4.6rem);
+  line-height: 0.98;
+  letter-spacing: -0.015em;
+  color: #faf6ee;
+  max-width: 15ch;
+}
+.writing-hero .masthead-sub {
+  font-family: var(--font-literary);
+  font-style: italic;
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  line-height: 1.55;
+  color: #b8ac9a;
+  max-width: 46ch;
+  margin-top: 24px;
 }
 
+/* Tabs — minimal, literary, sitting above the index */
 .writing-toggle {
   display: flex;
-  gap: 32px;
+  gap: 38px;
   border-bottom: 1px solid var(--border);
+  margin-bottom: 4px;
 }
 .writing-toggle button {
   background: none;
   border: none;
   color: var(--text-muted);
-  font-family: var(--font-serif);
+  font-family: var(--font-literary);
   font-style: italic;
-  font-size: 1.05rem;
-  padding: 0 0 14px;
+  font-size: 1.15rem;
+  padding: 0 0 16px;
   cursor: pointer;
   position: relative;
 }
@@ -416,121 +447,106 @@ h1.literary-heading {
 }
 
 .writing-group { display: none; }
-.writing-group.active { display: block; }
+.writing-group.active { display: block; counter-reset: idx; }
 
+/* Numbered editorial index */
 .writing-list-item {
-  display: block;
-  padding: 32px 0;
+  counter-increment: idx;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 28px;
+  align-items: baseline;
+  padding: 30px 4px;
   border-bottom: 1px solid var(--border);
   color: inherit;
+  transition: padding-left 0.25s ease;
 }
-.writing-list-item:hover { text-decoration: none; }
-.writing-list-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 16px;
-  margin-bottom: 10px;
+.writing-list-item:hover { text-decoration: none; padding-left: 14px; }
+.writing-list-item::before {
+  content: counter(idx, decimal-leading-zero);
+  font-family: var(--font-literary);
+  font-size: 0.95rem;
+  color: var(--accent);
+  padding-top: 0.6em;
 }
 .writing-list-title {
-  font-family: var(--font-serif);
-  font-size: 1.5rem;
+  font-family: var(--font-literary);
   font-weight: 400;
+  font-size: clamp(1.5rem, 3.4vw, 2.15rem);
+  line-height: 1.06;
   color: var(--text);
   transition: color 0.2s ease;
 }
 .writing-list-item:hover .writing-list-title { color: var(--accent); }
-.writing-list-date {
-  font-family: var(--font-body);
-  font-size: 0.76rem;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  white-space: nowrap;
-}
 .writing-list-teaser {
-  font-family: var(--font-serif);
+  font-family: var(--font-literary);
   font-style: italic;
   color: var(--text-muted);
-  font-size: 1.02rem;
-  line-height: 1.7;
-  margin: 0;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 8px 0 0;
   white-space: pre-wrap;
 }
+.writing-list-date {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+  padding-top: 0.8em;
+}
 
+@media (max-width: 640px) {
+  .writing-list-item { grid-template-columns: auto 1fr; gap: 18px; }
+  .writing-list-date { grid-column: 2; padding-top: 4px; }
+}
+
+/* Entry pages (poem / essay) — Fraunces title, drop cap, generous measure */
 article.prose {
   font-family: var(--font-serif);
-  font-size: 1.1rem;
-  line-height: 1.8;
-  max-width: 68ch;
+  font-size: 1.12rem;
+  line-height: 1.85;
+  max-width: 66ch;
   margin: 0 auto;
 }
 article.prose p { color: var(--text); }
-article.prose h1 { font-family: var(--font-serif); font-weight: 600; font-size: 2.4rem; }
+article.prose h1 {
+  font-family: var(--font-literary);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  line-height: 1.05;
+  margin-bottom: 6px;
+}
+article.prose .card-meta { color: var(--accent); }
+.entry-rule {
+  width: 48px; height: 2px; border: 0;
+  background: var(--accent-gradient);
+  margin: 22px 0 36px;
+}
 
-/* Poems: each stanza is its own <p> (split on blank lines server-side),
-   so a single line break is just a normal wrapped line (pre-wrap, no
-   extra markup), and a blank line in the source becomes a deliberate
-   but modest gap between stanzas via margin -- not a doubled-up jump. */
+/* Poems: each stanza is its own <p> (split on blank lines server-side). */
 .poem-body .poem-stanza {
   white-space: pre-wrap;
   font-style: italic;
-  line-height: 1.65;
-  margin: 0 0 1.4em;
+  line-height: 1.7;
+  margin: 0 0 1.5em;
 }
 .poem-body .poem-stanza:last-child { margin-bottom: 0; }
 
-.back-link { display: inline-block; margin-bottom: 28px; font-size: 0.9rem; color: var(--text-muted); }
-
-/* ---------- Reading-room refinements (paper page) ---------- */
-.writing-masthead { text-align: center; padding-top: 84px; }
-.writing-masthead .eyebrow { display: block; }
-.writing-masthead h1 { max-width: none; }
-.masthead-sub {
-  font-family: var(--font-serif);
-  font-style: italic;
-  color: var(--text-muted);
-  font-size: 1.1rem;
-  max-width: 46ch;
-  margin: 8px auto 0;
-}
-.writing-rule {
-  width: 54px;
-  height: 2px;
-  border: 0;
-  background: var(--accent-gradient);
-  margin: 28px auto 0;
-}
-.writing-toggle.centered { justify-content: center; gap: 40px; }
-
-/* Contents-page list: a touch more generous on the paper page */
-.paper-page .writing-list-title { font-size: 1.55rem; }
-
-/* Entry pages: centered masthead-style title, uppercase meta ornament */
-.paper-page article.prose h1 {
-  text-align: center;
-  font-style: italic;
-  font-size: clamp(2rem, 4vw, 2.7rem);
-  margin-bottom: 6px;
-}
-.paper-page article.prose .card-meta {
-  text-align: center;
-  margin-bottom: 6px;
-}
-.paper-page .entry-rule {
-  width: 54px; height: 2px; border: 0;
-  background: var(--accent-gradient);
-  margin: 22px auto 34px;
-}
-/* Drop cap for essays only (poems keep their own spacing) */
-.paper-page article.prose.essay > p:first-of-type::first-letter {
+/* Drop cap for essays only */
+article.prose.essay > p:first-of-type::first-letter {
   float: left;
-  font-size: 3.1em;
-  line-height: 0.78;
+  font-family: var(--font-literary);
+  font-size: 3.4em;
+  line-height: 0.72;
   font-weight: 600;
-  margin: 6px 12px 0 0;
-  color: var(--text);
+  margin: 8px 12px 0 0;
+  color: var(--accent);
 }
+
+.back-link { display: inline-block; margin-bottom: 28px; font-size: 0.9rem; color: var(--text-muted); }
 
 /* ---------- Photography ----------
    Full white portfolio page (see .light-page). Sharp-edged photo tiles,

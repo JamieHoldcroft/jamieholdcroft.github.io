@@ -4,20 +4,20 @@ title: "Writing — Jamie Holdcroft"
 description: "Writing and poetry by Jamie Holdcroft."
 paper_page: true
 ---
-<section class="hero writing-masthead" style="padding-bottom: 8px;">
+<section class="writing-hero">
   <div class="container writing-column">
-    <span class="eyebrow">Writing</span>
-    <h1 class="literary-heading">Writing &amp; Poetry</h1>
+    <span class="eyebrow">Writing &amp; Poetry</span>
+    <h1>Words for the water and the dark.</h1>
     <p class="masthead-sub">
-      Essays and articles, and a small, curated selection of poetry.
+      Essays and articles, and a small, curated selection of poems — mostly about the
+      ocean, the sky, and the things I'm still working out.
     </p>
-    <hr class="writing-rule" />
   </div>
 </section>
 
-<section class="section" style="padding-top: 40px;">
+<section class="section" style="padding-top: 48px;">
   <div class="container writing-column">
-    <div class="writing-toggle centered">
+    <div class="writing-toggle">
       <button class="active" data-target="essays-group">Writing</button>
       <button data-target="poetry-group">Poetry</button>
     </div>
@@ -26,11 +26,11 @@ paper_page: true
       {% assign essays = site.essays | sort: "date" | reverse %}
       {% for essay in essays %}
       <a class="writing-list-item" href="{{ essay.url | relative_url }}">
-        <div class="writing-list-row">
+        <div class="wli-body">
           <h3 class="writing-list-title">{{ essay.title }}</h3>
-          {% if essay.date %}<span class="writing-list-date">{{ essay.date | date: "%B %Y" }}</span>{% endif %}
+          {% if essay.excerpt %}<p class="writing-list-teaser">{{ essay.excerpt | escape }}</p>{% endif %}
         </div>
-        <p class="writing-list-teaser">{{ essay.excerpt | escape }}</p>
+        {% if essay.date %}<span class="writing-list-date">{{ essay.date | date: "%b %Y" }}</span>{% endif %}
       </a>
       {% else %}
       <p>No writing yet.</p>
@@ -41,11 +41,11 @@ paper_page: true
       {% assign poems = site.poems | sort: "date" | reverse %}
       {% for poem in poems %}
       <a class="writing-list-item" href="{{ poem.url | relative_url }}">
-        <div class="writing-list-row">
+        <div class="wli-body">
           <h3 class="writing-list-title">{{ poem.title }}</h3>
-          {% if poem.date %}<span class="writing-list-date">{{ poem.date | date: "%B %Y" }}</span>{% endif %}
+          {% if poem.excerpt %}<p class="writing-list-teaser">{{ poem.excerpt | escape }}</p>{% endif %}
         </div>
-        <p class="writing-list-teaser">{{ poem.excerpt | escape }}</p>
+        {% if poem.date %}<span class="writing-list-date">{{ poem.date | date: "%b %Y" }}</span>{% endif %}
       </a>
       {% else %}
       <p>No poems yet.</p>

@@ -8,6 +8,7 @@
   <link rel="canonical" href="{{ page.url | absolute_url }}" />
 
   <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Jamie Holdcroft" />
   <meta property="og:title" content="{{ page.title }}" />
   <meta property="og:description" content="{{ page.description | default: site.description }}" />
   <meta property="og:url" content="{{ page.url | absolute_url }}" />
@@ -20,16 +21,27 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Jamie Holdcroft",
-    "url": "{{ site.url }}/",
-    "jobTitle": "Undergraduate Researcher",
-    "affiliation": {
-      "@type": "CollegeOrUniversity",
-      "name": "UNSW Sydney"
-    },
-    "sameAs": [
-      "https://github.com/JamieHoldcroft"
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "name": "Jamie Holdcroft",
+        "url": "{{ site.url }}/"
+      },
+      {
+        "@type": "Person",
+        "name": "Jamie Holdcroft",
+        "url": "{{ site.url }}/",
+        "jobTitle": "Undergraduate Researcher",
+        "affiliation": {
+          "@type": "CollegeOrUniversity",
+          "name": "UNSW Sydney"
+        },
+        "sameAs": [
+          "https://github.com/JamieHoldcroft",
+          "https://www.linkedin.com/in/jamieholdcroft",
+          "https://scholar.google.com/citations?hl=en&user=27a15cAAAAAJ"
+        ]
+      }
     ]
   }
   </script>
