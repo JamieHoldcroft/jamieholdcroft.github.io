@@ -4,12 +4,13 @@ layout: default
 <section class="section">
   <div class="container writing-column">
     <a class="back-link" href="{{ '/writing.html' | relative_url }}">← Back to Writing</a>
-    <article class="prose">
+    <article class="prose {% if page.collection == 'poems' %}poem{% else %}essay{% endif %}">
       <span class="card-meta">
         {% if page.collection == "poems" %}Poetry{% else %}Writing{% endif %}
         {% if page.date %} · {{ page.date | date: "%B %Y" }}{% endif %}
       </span>
       <h1>{{ page.title }}</h1>
+      <hr class="entry-rule" />
       {% if page.collection == "poems" %}
       <div class="poem-body">
         {% assign stanzas = page.poem_text | split: "

@@ -9,7 +9,7 @@
       <a href="{{ '/photography.html' | relative_url }}" class="{% if page.url == '/photography.html' %}active{% endif %}">Photography</a>
     </nav>
     <div class="header-actions">
-      {% unless page.light_page %}
+      {% unless page.light_page or page.paper_page %}
       <button class="icon-btn" id="theme-toggle" aria-label="Toggle dark/light theme" title="Toggle theme">
         <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
           <circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.4" />

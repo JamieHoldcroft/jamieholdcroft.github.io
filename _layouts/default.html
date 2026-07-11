@@ -35,7 +35,7 @@
   </script>
   {% endif %}
 </head>
-<body class="{% if page.light_page %}light-page{% endif %}">
+<body class="{% if page.light_page %}light-page{% endif %}{% if page.paper_page %}paper-page{% endif %}">
   {% include header.html %}
 
   <main>

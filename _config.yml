@@ -19,11 +19,13 @@ defaults:
       type: "essays"
     values:
       layout: "writing-entry"
+      paper_page: true
   - scope:
       path: ""
       type: "poems"
     values:
       layout: "writing-entry"
+      paper_page: true
 
 plugins:
   - jekyll-sitemap
