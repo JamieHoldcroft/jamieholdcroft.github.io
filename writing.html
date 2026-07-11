@@ -1,14 +1,14 @@
 ---
 layout: default
 title: "Writing — Jamie Holdcroft"
-description: "Philosophy essays and poetry by Jamie Holdcroft."
+description: "Essays and poetry by Jamie Holdcroft."
 ---
 <section class="hero" style="padding-bottom: 24px;">
   <div class="container">
     <span class="eyebrow">Writing</span>
     <h1>Essays &amp; Poetry</h1>
     <p class="hero-lede">
-      Some philosophy essays, and a small, curated selection of poetry.
+      A collection of essays, and a small, curated selection of poetry.
     </p>
     <div class="writing-toggle">
       <button class="active" data-target="essays-group">Essays</button>
@@ -24,7 +24,7 @@ description: "Philosophy essays and poetry by Jamie Holdcroft."
         {% assign essays = site.essays | sort: "date" | reverse %}
         {% for essay in essays %}
         <div class="card">
-          <span class="card-meta">Philosophy{% if essay.date %} · {{ essay.date | date: "%B %Y" }}{% endif %}</span>
+          <span class="card-meta">Essay{% if essay.date %} · {{ essay.date | date: "%B %Y" }}{% endif %}</span>
           <h3><a href="{{ essay.url | relative_url }}">{{ essay.title }}</a></h3>
           <p>{{ essay.excerpt | escape }}</p>
         </div>
