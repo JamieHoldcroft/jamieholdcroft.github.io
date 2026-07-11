@@ -26,3 +26,20 @@ photos:
   - image: /assets/images/photography/DSC_0338.jpg
     caption: "Suffocation"
     orientation: landscape
+  - image: /assets/images/photography/DSC_1071.jpg
+    caption: "The Alps Black and White I"
+    orientation: landscape
+  - image: /assets/images/photography/DSC_1073.jpg
+    caption: "Once Upon a Dream"
+    orientation: portrait
+  - image: /assets/images/photography/DSC_0633.jpg
+    caption: "Shadows I"
+    orientation: landscape
+  - image: /assets/images/photography/DSC_1003.jpg
+    caption: "Three Little Trees"
+    orientation: portrait
+  - image: /assets/images/photography/DSC_0893.jpg 
+    caption: "Into Alcala la Real"
+    orientation: landscape
+
+
