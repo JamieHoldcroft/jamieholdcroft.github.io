@@ -1,0 +1,102 @@
+---
+layout: default
+title: "CV — Jamie Holdcroft"
+description: "Curriculum vitae for Jamie Holdcroft — education, research experience, and skills."
+---
+<section class="hero" style="padding-bottom: 24px;">
+  <div class="container">
+    <span class="eyebrow">CV</span>
+    <h1>Curriculum Vitae</h1>
+    <p class="hero-lede">Education, research experience, and skills.</p>
+    <div class="hero-actions">
+      {% if site.data.cv.pdf and site.data.cv.pdf != "" %}
+      <a class="btn btn-primary" href="{{ site.data.cv.pdf | relative_url }}" target="_blank" rel="noopener">Download PDF</a>
+      {% else %}
+      <span class="btn" style="opacity: 0.5; cursor: default;">PDF coming soon</span>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top: 0;">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Education</span>
+      <h2>Education</h2>
+    </div>
+    <div class="cv-entry">
+      <div class="cv-entry-head">
+        <div>
+          <h3>Bachelor of Science — Mathematics &amp; Computer Science</h3>
+          <span class="cv-org">UNSW Sydney</span>
+        </div>
+        <span class="cv-date">[Start year] – [Expected grad year]</span>
+      </div>
+      <p>Relevant coursework, honours/WAM, or standout subjects can go here.</p>
+    </div>
+    <!-- TODO: add more entries as needed -->
+  </div>
+</section>
+
+<section class="section" style="padding-top: 0;">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Experience</span>
+      <h2>Research &amp; Work Experience</h2>
+    </div>
+    <div class="cv-entry">
+      <div class="cv-entry-head">
+        <div>
+          <h3>Undergraduate Researcher</h3>
+          <span class="cv-org">[Lab / group / supervisor name]</span>
+        </div>
+        <span class="cv-date">[Month Year] – Present</span>
+      </div>
+      <p>One or two sentences on what you actually did — methods, contributions, outcomes.</p>
+    </div>
+    <div class="cv-entry">
+      <div class="cv-entry-head">
+        <div>
+          <h3>[Role title]</h3>
+          <span class="cv-org">[Organisation]</span>
+        </div>
+        <span class="cv-date">[Month Year] – [Month Year]</span>
+      </div>
+      <p>Description of the role and what you contributed.</p>
+    </div>
+    <!-- TODO: replace / duplicate .cv-entry blocks as needed -->
+  </div>
+</section>
+
+<section class="section" style="padding-top: 0;">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Skills</span>
+      <h2>Skills</h2>
+    </div>
+    <div class="skills-list">
+      <span class="tag">Python</span>
+      <span class="tag">LaTeX</span>
+      <span class="tag">Git</span>
+      <span class="tag">[Skill]</span>
+      <span class="tag">[Skill]</span>
+      <!-- TODO: replace with your real skills -->
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top: 0;">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Awards</span>
+      <h2>Awards &amp; Scholarships</h2>
+    </div>
+    <div class="cv-entry">
+      <div class="cv-entry-head">
+        <div><h3>[Award name]</h3></div>
+        <span class="cv-date">[Year]</span>
+      </div>
+    </div>
+    <!-- TODO: add real awards, or delete this section if none yet -->
+  </div>
+</section>

@@ -1,0 +1,32 @@
+---
+layout: default
+title: "Photography — Jamie Holdcroft"
+description: "Photography by Jamie Holdcroft — mostly ocean and sky."
+gallery: true
+---
+<section class="hero" style="padding-bottom: 24px;">
+  <div class="container">
+    <span class="eyebrow">Photography</span>
+    <h1>Photography</h1>
+    <p class="hero-lede">
+      Mostly the ocean and the night sky, plus whatever else catches my eye.
+    </p>
+  </div>
+</section>
+
+<section class="section" style="padding-top: 0;">
+  <div class="container">
+    {% assign photos = site.data.photography.photos %}
+    {% if photos and photos.size > 0 %}
+    <div class="gallery">
+      {% for photo in photos %}
+      <div class="gallery-item" data-full="{{ photo.image | relative_url }}" data-caption="{{ photo.caption | escape }}">
+        <img src="{{ photo.image | relative_url }}" alt="{{ photo.caption | escape }}" loading="lazy" />
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <p>No photos yet — add some via the <a href="{{ '/admin/' | relative_url }}">admin panel</a>.</p>
+    {% endif %}
+  </div>
+</section>

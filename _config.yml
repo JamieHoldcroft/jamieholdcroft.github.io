@@ -1,0 +1,35 @@
+title: Jamie Holdcroft
+description: >-
+  Jamie Holdcroft — undergraduate researcher studying Mathematics & Computer
+  Science at UNSW Sydney. Research, CV, writing, and photography.
+url: "https://jamieholdcroft.github.io"
+baseurl: ""
+
+collections:
+  essays:
+    output: true
+    permalink: /writing/:slug/
+  poems:
+    output: true
+    permalink: /writing/:slug/
+
+defaults:
+  - scope:
+      path: ""
+      type: "essays"
+    values:
+      layout: "writing-entry"
+  - scope:
+      path: ""
+      type: "poems"
+    values:
+      layout: "writing-entry"
+
+plugins:
+  - jekyll-sitemap
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - node_modules

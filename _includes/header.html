@@ -1,0 +1,16 @@
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="logo" href="{{ '/' | relative_url }}">Jamie Holdcroft</a>
+    <nav class="main-nav" id="main-nav">
+      <a href="{{ '/' | relative_url }}" class="{% if page.url == '/' %}active{% endif %}">Home</a>
+      <a href="{{ '/research.html' | relative_url }}" class="{% if page.url == '/research.html' %}active{% endif %}">Research</a>
+      <a href="{{ '/cv.html' | relative_url }}" class="{% if page.url == '/cv.html' %}active{% endif %}">CV</a>
+      <a href="{{ '/writing.html' | relative_url }}" class="{% if page.url == '/writing.html' or page.collection == 'essays' or page.collection == 'poems' %}active{% endif %}">Writing</a>
+      <a href="{{ '/photography.html' | relative_url }}" class="{% if page.url == '/photography.html' %}active{% endif %}">Photography</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn" id="theme-toggle" aria-label="Toggle dark/light theme" title="Toggle theme">🌓</button>
+      <button class="icon-btn nav-toggle" id="nav-toggle" aria-label="Toggle menu" title="Menu">☰</button>
+    </div>
+  </div>
+</header>
