@@ -385,8 +385,17 @@ article.prose .poem-body { white-space: pre-wrap; font-style: italic; }
 .back-link { display: inline-block; margin-bottom: 28px; font-size: 0.9rem; color: var(--text-muted); }
 
 /* ---------- Photography ----------
-   Masonry via CSS columns — portrait, landscape, and square photos each
-   keep their natural aspect ratio instead of being cropped to fit a grid. */
+   A full white gallery wall (not theme-dependent — a deliberate
+   print-on-white space regardless of dark/light mode), with photos as
+   sharp-edged tiles directly on it, masonry-arranged via CSS columns. */
+.gallery-wall {
+  background: #ffffff;
+  --text: #111827;
+  --text-muted: #4b5563;
+  --border: #e2e6ed;
+  padding: 48px 0 64px;
+}
+
 .gallery {
   column-count: 3;
   column-gap: 14px;
@@ -396,19 +405,12 @@ article.prose .poem-body { white-space: pre-wrap; font-style: italic; }
   display: block;
   break-inside: avoid;
   margin-bottom: 14px;
-  border-radius: var(--radius-sm);
-  overflow: hidden;
   cursor: pointer;
-  /* Photos sit on a fixed white mat regardless of site theme — a
-     deliberate print-on-white gallery look, not theme-dependent. */
-  background: #ffffff;
-  padding: 10px;
-  box-shadow: var(--shadow-sm);
   transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
-.gallery-item:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
-.gallery-item img { width: 100%; height: auto; display: block; border-radius: 4px; transition: transform 0.3s ease; }
-.gallery-item:hover img { transform: scale(1.05); }
+.gallery-item:hover { box-shadow: 0 12px 30px rgba(15, 23, 42, 0.18); transform: translateY(-2px); }
+.gallery-item img { width: 100%; height: auto; display: block; transition: transform 0.3s ease; }
+.gallery-item:hover img { transform: scale(1.03); }
 
 .lightbox {
   position: fixed; inset: 0;
