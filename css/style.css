@@ -6,20 +6,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap');
 
 :root {
-  /* dark ("ocean at night") — default */
-  --bg: #0b0f1a;
-  --bg-alt: #111827;
-  --bg-elevated: #161d2e;
-  --text: #e8ecf3;
-  --text-muted: #93a1b8;
-  --border: #232b3d;
+  /* Editorial light — clean white, warm ink, sienna accent.
+     A professional writing/poetry portfolio look. */
+  --bg: #ffffff;
+  --bg-alt: #faf8f5;
+  --bg-elevated: #f4f1ec;
+  --text: #1c1917;
+  --text-muted: #6b645c;
+  --border: #e8e3db;
 
-  --accent: #2dd4bf;      /* ocean / teal */
-  --accent-2: #818cf8;    /* night sky / indigo */
-  --accent-gradient: linear-gradient(135deg, var(--accent-2) 0%, var(--accent) 100%);
+  --accent: #a0522d;      /* sienna */
+  --accent-2: #7c3a26;    /* deep rust */
+  --accent-gradient: linear-gradient(135deg, #b5643a 0%, #8a3f28 100%);
 
-  --shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
-  --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.25);
+  --shadow: 0 10px 30px rgba(40, 30, 20, 0.08);
+  --shadow-sm: 0 2px 10px rgba(40, 30, 20, 0.05);
   --radius: 8px;
   --radius-sm: 5px;
   --max-width: 980px;
@@ -29,56 +30,19 @@
   --font-serif: 'Source Serif 4', Georgia, serif;
 }
 
-[data-theme="light"] {
-  --bg: #f7f9fc;
-  --bg-alt: #ffffff;
-  --bg-elevated: #ffffff;
-  --text: #111827;
-  --text-muted: #5b6472;
-  --border: #e2e6ed;
-
-  --accent: #0e9488;
-  --accent-2: #4f46e5;
-
-  --shadow: 0 8px 30px rgba(15, 23, 42, 0.08);
-  --shadow-sm: 0 2px 10px rgba(15, 23, 42, 0.06);
-}
-
-/* Forced-light page (photography) — a deliberate white portfolio look
-   regardless of the site-wide dark/light toggle. Set on <body> so it
-   overrides [data-theme] for this page's whole subtree. */
+/* Photography — pure gallery white (photos read best on true white). */
 .light-page {
   --bg: #ffffff;
   --bg-alt: #ffffff;
-  --bg-elevated: #f7f7f7;
-  --text: #111111;
+  --bg-elevated: #f6f6f6;
+  --text: #141414;
   --text-muted: #5a5a5a;
-  --border: #e5e5e5;
-
-  --accent: #0e9488;
-  --accent-2: #4f46e5;
-
-  --shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
-  --shadow-sm: 0 2px 10px rgba(15, 23, 42, 0.05);
+  --border: #eceae6;
 }
 
-/* Forced "reading room" page (writing/poetry) — a warm paper-cream,
-   ink-and-serif literary environment, its own world like the photography
-   page, regardless of the site-wide dark/light toggle. */
-.paper-page {
-  --bg: #f7f3ea;
-  --bg-alt: #f7f3ea;
-  --bg-elevated: #f0e9da;
-  --text: #26221b;
-  --text-muted: #6f6557;
-  --border: #e2d8c6;
-
-  --accent: #0e8f83;
-  --accent-2: #4f46e5;
-
-  --shadow: 0 12px 30px rgba(70, 55, 30, 0.10);
-  --shadow-sm: 0 2px 10px rgba(70, 55, 30, 0.06);
-}
+/* Writing/poetry — same clean editorial palette as the rest of the site;
+   the .paper-page class stays only as a hook for the reading-room LAYOUT
+   (centered masthead, drop caps) and to hide the (now removed) toggle. */
 
 * { box-sizing: border-box; }
 
@@ -213,7 +177,7 @@ p { color: var(--text-muted); margin: 0 0 1em; }
 .btn-primary {
   border: none;
   background: var(--accent-gradient);
-  color: #0b0f1a;
+  color: #ffffff;
   font-weight: 600;
 }
 .btn-primary:hover { box-shadow: 0 8px 24px color-mix(in srgb, var(--accent) 35%, transparent); }

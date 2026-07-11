@@ -9,14 +9,6 @@
       <a href="{{ '/photography.html' | relative_url }}" class="{% if page.url == '/photography.html' %}active{% endif %}">Photography</a>
     </nav>
     <div class="header-actions">
-      {% unless page.light_page or page.paper_page %}
-      <button class="icon-btn" id="theme-toggle" aria-label="Toggle dark/light theme" title="Toggle theme">
-        <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
-          <circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.4" />
-          <path d="M8 1.5 A6.5 6.5 0 0 1 8 14.5 Z" fill="currentColor" />
-        </svg>
-      </button>
-      {% endunless %}
       <button class="icon-btn nav-toggle" id="nav-toggle" aria-label="Toggle menu" title="Menu">☰</button>
     </div>
   </div>

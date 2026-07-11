@@ -1,25 +1,8 @@
-// Theme toggle, mobile nav, writing tabs, and photo lightbox.
+// Mobile nav, writing tabs, and photo lightbox.
 // Must load AFTER components.js so the header/footer exist in the DOM.
-
-(function themeInit() {
-  // Apply saved/default theme as early as possible to avoid a flash.
-  const saved = localStorage.getItem('theme');
-  const theme = saved || 'dark';
-  document.documentElement.setAttribute('data-theme', theme);
-})();
+// (The site is a single editorial theme now — no dark/light toggle.)
 
 document.addEventListener('DOMContentLoaded', () => {
-  // ---- Theme toggle ----
-  const themeToggle = document.getElementById('theme-toggle');
-  if (themeToggle) {
-    themeToggle.addEventListener('click', () => {
-      const current = document.documentElement.getAttribute('data-theme') || 'dark';
-      const next = current === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', next);
-      localStorage.setItem('theme', next);
-    });
-  }
-
   // ---- Mobile nav toggle ----
   const navToggle = document.getElementById('nav-toggle');
   const mainNav = document.getElementById('main-nav');
