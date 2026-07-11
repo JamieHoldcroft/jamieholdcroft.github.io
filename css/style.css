@@ -15,9 +15,9 @@
   --text-muted: #6b645c;
   --border: #e8e3db;
 
-  --accent: #a0522d;      /* sienna */
-  --accent-2: #7c3a26;    /* deep rust */
-  --accent-gradient: linear-gradient(135deg, #b5643a 0%, #8a3f28 100%);
+  --accent: #a67c4a;      /* tan / camel */
+  --accent-2: #7d5c31;    /* deep tan */
+  --accent-gradient: linear-gradient(135deg, #bd965d 0%, #8a6636 100%);
 
   --shadow: 0 10px 30px rgba(40, 30, 20, 0.08);
   --shadow-sm: 0 2px 10px rgba(40, 30, 20, 0.05);
@@ -178,7 +178,7 @@ p { color: var(--text-muted); margin: 0 0 1em; }
 .btn-primary {
   border: none;
   background: var(--accent-gradient);
-  color: #ffffff;
+  color: #241d12;
   font-weight: 600;
 }
 .btn-primary:hover { box-shadow: 0 8px 24px color-mix(in srgb, var(--accent) 35%, transparent); }
@@ -390,12 +390,12 @@ h1.literary-heading {
 
 /* Thick dark masthead block — the page's moment of drama. */
 .writing-hero {
-  background: #1b1611;
+  background: #2c2419;
   color: #f5efe4;
   padding: 104px 0 88px;
 }
 .writing-hero .eyebrow {
-  color: #d3925f;
+  color: #cca568;
   display: block;
   margin-bottom: 22px;
 }
