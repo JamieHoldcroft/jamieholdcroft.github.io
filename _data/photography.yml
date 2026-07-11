@@ -41,5 +41,14 @@ photos:
   - image: /assets/images/photography/DSC_0893.jpg 
     caption: "Into Alcala la Real"
     orientation: landscape
+  - image: /assets/images/photography/DSC_0393.jpg 
+    caption: "Ethereal"
+    orientation: landscape
+  - image: /assets/images/photography/DSC_0595.JPG
+    caption: "A peek"
+    orientation: portrait
+  - image: /assets/images/photography/DSC_0578.jpg
+    caption: "Geometria della Grazia"
+    orientation: portrait
 
 
