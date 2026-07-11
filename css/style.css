@@ -207,19 +207,22 @@ p { color: var(--text-muted); margin: 0 0 1em; }
 }
 
 .eyebrow {
-  font-family: var(--font-display);
+  font-family: var(--font-body);
   text-transform: uppercase;
-  letter-spacing: 0.14em;
-  font-size: 0.78rem;
-  color: var(--accent);
+  letter-spacing: 0.18em;
+  font-size: 0.72rem;
+  color: var(--text-muted);
   margin-bottom: 18px;
   display: inline-block;
 }
 
 .hero h1 {
-  font-size: clamp(2.2rem, 5vw, 3.4rem);
-  letter-spacing: -0.02em;
-  max-width: 16ch;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  letter-spacing: -0.01em;
+  max-width: 18ch;
 }
 
 .gradient-text {
@@ -250,7 +253,12 @@ p { color: var(--text-muted); margin: 0 0 1em; }
 .section { padding: 56px 0; }
 .section-head { margin-bottom: 36px; }
 .section-head .eyebrow { margin-bottom: 10px; }
-.section-head h2 { font-size: clamp(1.6rem, 3vw, 2.1rem); }
+.section-head h2 {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+}
 .section-head p { max-width: 60ch; }
 
 /* ---------- Cards / grid ---------- */
@@ -421,24 +429,9 @@ article.prose h1 { font-family: var(--font-serif); font-weight: 600; font-size: 
 
 /* ---------- Photography ----------
    Full white portfolio page (see .light-page). Sharp-edged photo tiles,
-   generous gutters, masonry-arranged via CSS columns, caption on hover. */
-.portfolio-hero { padding: 72px 0 32px; }
-.portfolio-eyebrow {
-  font-family: var(--font-body);
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  font-size: 0.72rem;
-  color: var(--text-muted);
-  display: block;
-  margin-bottom: 18px;
-}
-.portfolio-hero h1 {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 600;
-  font-size: clamp(2rem, 4vw, 2.8rem);
-}
-.portfolio-hero p { max-width: 56ch; }
+   generous gutters, masonry-arranged via CSS columns, caption on hover.
+   Heading/eyebrow typography now lives in the shared .hero/.eyebrow
+   rules above, applied site-wide for a consistent feel. */
 
 .gallery {
   column-count: 3;
