@@ -2,3 +2,6 @@ photos:
   - image: /assets/images/photography/DSC_0383.JPG
     caption: "Train in Venice"
     orientation: landscape   
+  - image: /assets/images/photography/DSC_0492.JPG
+    caption: "Pile of Books"
+    orientation: portrait
