@@ -11,7 +11,14 @@ layout: default
       </span>
       <h1>{{ page.title }}</h1>
       {% if page.collection == "poems" %}
-      <div class="poem-body">{{ page.poem_text | escape | newline_to_br }}</div>
+      <div class="poem-body">
+        {% assign stanzas = page.poem_text | split: "
+
+" %}
+        {% for stanza in stanzas %}
+        <p class="poem-stanza">{{ stanza | escape }}</p>
+        {% endfor %}
+      </div>
       {% else %}
       {{ content }}
       {% endif %}

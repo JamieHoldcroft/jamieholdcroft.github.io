@@ -43,7 +43,7 @@ description: "General writing and poetry by Jamie Holdcroft."
           <h3 class="writing-list-title">{{ poem.title }}</h3>
           {% if poem.date %}<span class="writing-list-date">{{ poem.date | date: "%B %Y" }}</span>{% endif %}
         </div>
-        <p class="writing-list-teaser">{{ poem.excerpt | escape | newline_to_br }}</p>
+        <p class="writing-list-teaser">{{ poem.excerpt | escape }}</p>
       </a>
       {% else %}
       <p>No poems yet.</p>

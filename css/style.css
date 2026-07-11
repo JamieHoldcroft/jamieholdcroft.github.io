@@ -404,7 +404,18 @@ article.prose {
 }
 article.prose p { color: var(--text); }
 article.prose h1 { font-family: var(--font-serif); font-weight: 600; font-size: 2.4rem; }
-article.prose .poem-body { white-space: pre-wrap; font-style: italic; }
+
+/* Poems: each stanza is its own <p> (split on blank lines server-side),
+   so a single line break is just a normal wrapped line (pre-wrap, no
+   extra markup), and a blank line in the source becomes a deliberate
+   but modest gap between stanzas via margin -- not a doubled-up jump. */
+.poem-body .poem-stanza {
+  white-space: pre-wrap;
+  font-style: italic;
+  line-height: 1.65;
+  margin: 0 0 1.4em;
+}
+.poem-body .poem-stanza:last-child { margin-bottom: 0; }
 
 .back-link { display: inline-block; margin-bottom: 28px; font-size: 0.9rem; color: var(--text-muted); }
 
