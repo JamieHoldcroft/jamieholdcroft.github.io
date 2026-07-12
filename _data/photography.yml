@@ -1,58 +1,72 @@
 photos:
-  - image: /assets/images/photography/DSC_0383.JPG
+  - image: /assets/images/photography/0DSC_0383.JPG
     caption: "Sunset Train to Venice"
     orientation: landscape   
-  - image: /assets/images/photography/DSC_0492.JPG
+  - image: /assets/images/photography/0DSC_0492.JPG
     caption: "Decay of Knowledge"
     orientation: portrait
-  - image: /assets/images/photography/DSC_0827.JPG
+  - image: /assets/images/photography/0DSC_0827.JPG
     caption: "Forms I"
     orientation: landscape
-  - image: /assets/images/photography/DSC_0037 (1).jpg
+  - image: /assets/images/photography/0DSC_0037 (1).jpg
     caption: "Nordkette Black and White I"
     orientation: landscape
-  - image: /assets/images/photography/DSC_0710JPG.JPG
+  - image: /assets/images/photography/0DSC_0710JPG.JPG
     caption: "Um die Ecke"
     orientation: portrait
-  - image: /assets/images/photography/DSC_0210JPG.jpg
+  - image: /assets/images/photography/0DSC_0210JPG.jpg
     caption: "Winter Evening in Oxford"
     orientation: landscape
-  - image: /assets/images/photography/DSC_0343 (1).jpg
+  - image: /assets/images/photography/0DSC_0343 (1).jpg
     caption: "The Epitome of Innsbruck"
     orientation: landscape
-  - image: /assets/images/photography/DSC_0458.jpg
+  - image: /assets/images/photography/0DSC_0458.jpg
     caption: "The Warmth of an Venetian Street"
     orientation: landscape
-  - image: /assets/images/photography/DSC_0338.jpg
+  - image: /assets/images/photography/0DSC_0338.jpg
     caption: "Suffocation"
     orientation: landscape
-  - image: /assets/images/photography/DSC_1071.jpg
+  - image: /assets/images/photography/0DSC_1071.jpg
     caption: "The Alps Black and White I"
     orientation: landscape
-  - image: /assets/images/photography/DSC_1073.jpg
+  - image: /assets/images/photography/0DSC_1073.jpg
     caption: "Once Upon a Dream"
     orientation: portrait
-  - image: /assets/images/photography/DSC_0633.jpg
+  - image: /assets/images/photography/0DSC_0633.jpg
     caption: "Shadows I"
     orientation: landscape
-  - image: /assets/images/photography/DSC_1003.jpg
+  - image: /assets/images/photography/0DSC_1003.jpg
     caption: "Three Little Trees"
     orientation: portrait
-  - image: /assets/images/photography/DSC_0893.jpg 
+  - image: /assets/images/photography/0DSC_0893.jpg 
     caption: "Into Alcala la Real"
     orientation: landscape
-  - image: /assets/images/photography/DSC_0393.jpg 
+  - image: /assets/images/photography/0DSC_0393.jpg 
     caption: "Departure and Arrival"
     orientation: landscape
-  - image: /assets/images/photography/DSC_0595.JPG
+  - image: /assets/images/photography/0DSC_0595.JPG
     caption: "Routine I"
     orientation: portrait
-  - image: /assets/images/photography/DSC_0578.jpg
+  - image: /assets/images/photography/0DSC_0578.jpg
     caption: "Geometria della Grazia"
     orientation: portrait
-  - image: /assets/images/photography/DSC_0629.jpg
+  - image: /assets/images/photography/0DSC_0629.jpg
     caption: "Walk in Love"
     orientation: portrait
+  - image: /assets/images/photography/0DSC_0491 (1).jpg
+    caption: "On Trial"
+    orientation: portrait
+  - image: /assets/images/photography/0DSC_0636.JPG
+    caption: "Reflection like in a Dream"
+    orientation: landscape
+  - image: /assets/images/photography/1.JPG
+    caption: "Slices of Light"
+    orientation: landscape
+  - image: /assets/images/photography/2.JPG
+    caption: "Alley in Venice I"
+    orientation: landscape
+
+
 
 
 
