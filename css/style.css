@@ -19,6 +19,13 @@
   --accent-2: #7c6a4b;    /* deep muted tan */
   --accent-gradient: linear-gradient(135deg, #b8a888 0%, #8c7a58 100%);
 
+  /* Warm dark-brown block — shared by the writing masthead & footer
+     so the site reads as one coherent palette. */
+  --block-bg: #2c2419;
+  --block-fg: #f5efe4;
+  --block-muted: #b8ac9a;
+  --block-accent: #c2a373;
+
   --shadow: 0 10px 30px rgba(40, 30, 20, 0.08);
   --shadow-sm: 0 2px 10px rgba(40, 30, 20, 0.05);
   --radius: 8px;
@@ -228,9 +235,9 @@ p { color: var(--text-muted); margin: 0 0 1em; }
 /* Explicit "arty" heading treatment -- opt-in only (Writing, Photography),
    not the site-wide default. Higher specificity than .hero h1 by design. */
 h1.literary-heading {
-  font-family: var(--font-literary);
+  font-family: var(--font-serif);
   font-style: normal;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .gradient-text {
@@ -449,12 +456,12 @@ h1.literary-heading {
 
 /* Thick dark masthead block — the page's moment of drama. */
 .writing-hero {
-  background: #2c2419;
-  color: #f5efe4;
+  background: var(--block-bg);
+  color: var(--block-fg);
   padding: 104px 0 88px;
 }
 .writing-hero .eyebrow {
-  color: #c2a373;
+  color: var(--block-accent);
   display: block;
   margin-bottom: 22px;
 }
@@ -670,9 +677,10 @@ article.prose.essay > p:first-of-type::first-letter {
 
 /* ---------- Footer ---------- */
 .site-footer {
-  border-top: 1px solid var(--border);
-  padding: 40px 0;
-  margin-top: 60px;
+  background: var(--block-bg);
+  color: var(--block-fg);
+  padding: 52px 0;
+  margin-top: 80px;
 }
 .footer-inner {
   display: flex;
@@ -681,10 +689,10 @@ article.prose.essay > p:first-of-type::first-letter {
   flex-wrap: wrap;
   gap: 12px;
 }
-.footer-inner p { margin: 0; font-size: 0.85rem; }
+.footer-inner p { margin: 0; font-size: 0.85rem; color: var(--block-muted); }
 .footer-links { display: flex; gap: 18px; }
-.footer-links a { font-size: 0.85rem; color: var(--text-muted); }
-.footer-links a:hover { color: var(--accent); }
+.footer-links a { font-size: 0.85rem; color: var(--block-muted); }
+.footer-links a:hover { color: var(--block-accent); }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 760px) {
