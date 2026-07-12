@@ -205,23 +205,6 @@ p { color: var(--text-muted); margin: 0 0 1em; }
   position: relative;
 }
 
-/* Homepage hero on the warm brown block — flows from the brown nav bar
-   into one dramatic masthead. Local vars recolor buttons/links/text. */
-.home-hero {
-  background: var(--block-bg);
-  color: var(--block-fg);
-  --text: var(--block-fg);
-  --text-muted: var(--block-muted);
-  --border: rgba(245, 239, 228, 0.22);
-  --bg-alt: rgba(245, 239, 228, 0.06);
-  padding: 72px 0 84px;
-}
-.home-hero .eyebrow { color: var(--block-accent); }
-.home-hero .hero-photo img {
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
-  border: 1px solid rgba(245, 239, 228, 0.14);
-}
-
 /* Two-column hero: intro text + profile photo on the right */
 .hero-grid { display: grid; grid-template-columns: 1fr; gap: 40px; align-items: center; }
 .hero-photo { margin: 0; display: flex; justify-content: flex-start; }
