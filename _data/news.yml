@@ -1,10 +1,13 @@
 # Add news announcements here — newest can go anywhere, they're sorted by date.
 # Each entry: a date, some text, and an optional link (+ optional link_text).
+- date: 2026-07-08
+  text: "Our paper got accepted to CIKM 2026"
+
 - date: 2026-07-20
   text: "Our research has reached 50 citations on Google Scholar."
 
 - date: 2026-07-19
-  text: "Our paper was published in the SIGIR 2026 Reproducibility Track."
+  text: "Our paper was published in SIGIR 2026."
   link: "https://dl.acm.org/doi/10.1145/3805712.3808566"
   link_text: "Read the paper"
 
