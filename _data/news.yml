@@ -1,5 +1,8 @@
 # Add news announcements here — newest can go anywhere, they're sorted by date.
 # Each entry: a date, some text, and an optional link (+ optional link_text).
+- date: 2026-08-21
+  text: "My first-author paper got accepted to EMNLP 2026 Main conference"
+
 - date: 2026-07-08
   text: "Our paper got accepted to CIKM 2026"
 
