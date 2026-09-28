@@ -1,5 +1,9 @@
 # Add news announcements here — newest can go anywhere, they're sorted by date.
 # Each entry: a date, some text, and an optional link (+ optional link_text).
+
+- date: 2026-09-28
+  text: "Started an ARC research scholarship hosted at the UNSW Climate Change Research Centre, researching land surface models that underpin Australia and the UK's climate models. "
+
 - date: 2026-08-21
   text: "My first-author paper got accepted to EMNLP 2026 Main conference"
 
