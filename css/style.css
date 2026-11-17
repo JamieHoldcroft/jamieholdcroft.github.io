@@ -726,3 +726,13 @@ article.prose.essay > p:first-of-type::first-letter {
 @media (max-width: 480px) {
   .gallery { column-count: 1; }
 }
+
+.cv-meta {
+  font-size: 0.85rem;
+  color: #6b7280;          /* muted grey for the field */
+  margin: 2px 0 8px;
+}
+.cv-type {
+  color: var(--accent, #2563eb);   /* your site's accent colour */
+  font-weight: 600;
+}
