@@ -1,6 +1,9 @@
 # Add news announcements here — newest can go anywhere, they're sorted by date.
 # Each entry: a date, some text, and an optional link (+ optional link_text).
 
+- date: 2026-11-16
+  text: "Started a research internship at CSIRO, developing a platform for mapping verifiable global technology trends using neuro-symbolic reasoning over knowledge graphs."
+
 - date: 2026-11-06
   text: "My first-author paper was published in CIKM 2026."
   link: "https://dl.acm.org/doi/10.1145/3799682.3839939"
@@ -12,7 +15,7 @@
   link_text: "Read the paper"
 
 - date: 2026-09-28
-  text: "Started an ARC research scholarship hosted at the UNSW Climate Change Research Centre, researching land surface models that underpin Australia and the UK's climate models. "
+  text: "Started an ARC research scholarship hosted at the UNSW Climate Change Research Centre, researching land surface models that underpin Australia and the UK's climate models."
 
 - date: 2026-07-20
   text: "Our research has reached 50 citations on Google Scholar."
